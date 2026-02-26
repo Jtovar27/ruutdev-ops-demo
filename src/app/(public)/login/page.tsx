@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { ShieldCheck } from "lucide-react";
+import { ShieldCheck, Zap, User, LayoutDashboard } from "lucide-react";
 
 export default function LoginPage() {
   return (
@@ -141,6 +141,33 @@ export default function LoginPage() {
             </span>{" "}
             to request access.
           </p>
+
+          {/* Demo mode */}
+          <div className="rounded-lg border border-dashed bg-muted/40 p-4 space-y-3">
+            <div className="flex items-center gap-2">
+              <Zap className="h-3.5 w-3.5 text-amber-500" />
+              <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Demo Mode
+              </span>
+            </div>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              Skip login and explore the app with pre-loaded data.
+            </p>
+            <div className="grid grid-cols-2 gap-2">
+              <Button variant="outline" size="sm" className="w-full" asChild>
+                <Link href="/app/tasks">
+                  <User className="mr-1.5 h-3.5 w-3.5" />
+                  View as Employee
+                </Link>
+              </Button>
+              <Button variant="outline" size="sm" className="w-full" asChild>
+                <Link href="/admin/dashboard">
+                  <LayoutDashboard className="mr-1.5 h-3.5 w-3.5" />
+                  View as Admin
+                </Link>
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
