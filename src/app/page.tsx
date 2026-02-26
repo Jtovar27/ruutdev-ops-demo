@@ -1,11 +1,18 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 
+const routes = [
+  { href: "/login", label: "Login", tag: "public" },
+  { href: "/app/tasks", label: "Tasks", tag: "app" },
+  { href: "/app/tasks/1", label: "Task Detail", tag: "app" },
+  { href: "/admin/dashboard", label: "Admin Dashboard", tag: "admin" },
+];
+
 export default function Home() {
   return (
-    <div className="space-y-8">
-      {/* Hero */}
+    <div className="mx-auto max-w-5xl space-y-8 px-4 py-10 sm:px-6 lg:px-8">
       <section className="space-y-3">
         <div className="flex items-center gap-2">
           <Badge>Demo</Badge>
@@ -16,32 +23,33 @@ export default function Home() {
         </h1>
         <p className="max-w-2xl text-muted-foreground">
           A minimal Next.js starter with App Router, TypeScript, Tailwind CSS,
-          and shadcn/ui — ready for your next project.
+          and shadcn/ui.
         </p>
-        <div className="flex gap-3 pt-2">
-          <Button>Get Started</Button>
-          <Button variant="outline">Learn More</Button>
-        </div>
       </section>
 
       <Separator />
 
-      {/* Stack */}
       <section className="space-y-4">
-        <h2 className="text-xl font-semibold">Stack</h2>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            { name: "Next.js 16", desc: "App Router, file-based routing" },
-            { name: "TypeScript", desc: "Static typing end-to-end" },
-            { name: "Tailwind CSS v4", desc: "Utility-first styling" },
-            { name: "shadcn/ui", desc: "Accessible component primitives" },
-          ].map((item) => (
-            <div
-              key={item.name}
-              className="rounded-lg border bg-card p-4 text-card-foreground shadow-sm"
-            >
-              <p className="font-medium">{item.name}</p>
-              <p className="mt-1 text-sm text-muted-foreground">{item.desc}</p>
+        <h2 className="text-xl font-semibold">Routes</h2>
+        <div className="flex flex-col gap-3">
+          {routes.map((r) => (
+            <div key={r.href} className="flex items-center gap-3">
+              <Badge
+                variant={
+                  r.tag === "admin"
+                    ? "destructive"
+                    : r.tag === "app"
+                      ? "default"
+                      : "secondary"
+                }
+                className="w-16 justify-center"
+              >
+                {r.tag}
+              </Badge>
+              <Button variant="link" className="h-auto p-0" asChild>
+                <Link href={r.href}>{r.href}</Link>
+              </Button>
+              <span className="text-sm text-muted-foreground">— {r.label}</span>
             </div>
           ))}
         </div>
