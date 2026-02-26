@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { MapPin, Building2, Calendar, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { TaskStatusBadge, statusConfig } from "@/components/task-status-badge";
+import { TaskStatusBadge } from "@/components/task-status-badge";
 import type { Task, TaskStatus } from "@/lib/demo-data";
 
 // ---------------------------------------------------------------------------
